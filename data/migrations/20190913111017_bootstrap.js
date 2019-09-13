@@ -20,7 +20,7 @@ exports.up = function(knex) {
           .notNullable()
           .unique();
         tbl.string("description", 512);
-        tbl.boolean("completed")
+        tbl.boolean("completed").defaultTo("false");
       })
 
       // TASKS TABLE

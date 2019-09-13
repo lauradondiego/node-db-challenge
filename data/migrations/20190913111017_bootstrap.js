@@ -20,7 +20,7 @@ exports.up = function(knex) {
           .notNullable()
           .unique();
         tbl.string("description", 512);
-        tbl.boolean("completed").notNullable();
+        tbl.boolean("completed")
       })
 
       // TASKS TABLE
@@ -31,6 +31,7 @@ exports.up = function(knex) {
         tbl.boolean("completed").notNullable();
         tbl
           .integer("projects_id")
+          .notNullable()
           .unsigned()
           .references("id")
           .inTable("projects")

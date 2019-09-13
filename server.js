@@ -1,17 +1,17 @@
 const express = require("express");
 const helmet = require("helmet");
 
-const tasksRouter = require("./tasks/task-router");
+const projectRouter = require("./tasks/project-router");
 
 const server = express();
 
 server.use(helmet());
 server.use(express.json());
 
-server.use("/api/tasks", tasksRouter);
+server.use("/api/projects", projectRouter);
 
 server.get("/", (req, res) => {
-  res.status(200).json({ api: "Tasks API is up and running!" });
+  res.status(200).json({ api: "Projects API is up and running!" });
 });
 
 module.exports = server;

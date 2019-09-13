@@ -1,6 +1,6 @@
 exports.up = function(knex) {
   return (
-    knex.chema
+    knex.schema
 
       // RESOURCES TABLE
       .createTable("resources", tbl => {
@@ -29,7 +29,7 @@ exports.up = function(knex) {
         tbl.string("description", 512).notNullable();
         tbl.string("notes", 512);
         tbl.boolean("completed").notNullable();
-        tbll
+        tbl
           .integer("projects_id")
           .unsigned()
           .references("id")
@@ -41,25 +41,31 @@ exports.up = function(knex) {
       // MANAGER TABLE
       .createTable("manager", tbl => {
         tbl
-          .integer("project_id")
+          .integer("projects_id")
           .unsigned()
           .references("id")
-          .inTable("project")
+          .inTable("projects")
           .onDelete("CASCADE")
           .onUpdate("CASCADE");
 
         tbl
-          .integer("resource_id")
+          .integer("resources_id")
           .unsigned()
           .references("id")
           .inTable("resources")
           .onDelete("CASCADE")
           .onUpdate("CASCADE");
-        tbl.primary(["project_id", "resource_id"]);
+        tbl.primary(["projects_id", "resources_id"]);
       })
   );
 };
 
-exports.down = function(knex) {};
+exports.down = function(knex) {
+  return knex.schema
+    .dropTableIfExists("manager")
+    .dropTableIfExists("tasks")
+    .dropTableIfExists("projects")
+    .dropTableIfExists("resources");
+};
 
-resource / Project / task / manager in order;
+// in order by resource / Project / task / manager

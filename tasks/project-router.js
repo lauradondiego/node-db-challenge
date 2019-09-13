@@ -12,6 +12,12 @@ router.post("/", (req, res) => {
       db("projects")
         .where({ id: project[0] })
         .then(newProjectEntry => {
+          if (newProjectEntry[0].completed === 0) {
+            newProjectEntry[0].completed = false;
+            console.log(newProjectEntry);
+          } else {
+            newProjectEntry[0].completed = true;
+          }
           res.status(201).json(newProjectEntry);
         });
     })
@@ -24,6 +30,14 @@ router.post("/", (req, res) => {
 router.get("/", (req, res) => {
   db("projects")
     .then(projects => {
+      console.log(projects);
+      projects.forEach(project => {
+        if (project.completed === 0) {
+          project.completed = false;
+        } else {
+          project.completed = true;
+        }
+      });
       res.status(200).json(projects);
     })
     .catch(err => {

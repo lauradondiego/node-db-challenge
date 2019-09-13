@@ -40,11 +40,19 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+SQL is the language, which is how you get data from the database. Relational database is where you can create and manipulate the actual data that's stored in the tables with rows and columns
+
 - [ ] Why do tables need a `primary key`?
+
+It's an ID for the data that's in each row. They increment automatically - a record is a row the actual data and a column is a field/category and you need a primary key to identify data in different columns
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+foreign key (establishes relationship b/w 2 tables)
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+an additional table!!!
 
 ## Minimum Viable Product
 
